@@ -8,7 +8,9 @@ const colors = require("colors");
 app.set("view engine", "ejs");
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/index.html");
+  res.render("pages/index", {
+    random_number: Math.floor(Math.random() * 101)
+  });
 });
 
 server.listen(PORT, () => {
