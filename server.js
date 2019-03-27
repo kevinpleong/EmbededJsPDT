@@ -1,13 +1,14 @@
 const express = require('express');
 const app = express();
 const server = require("http").createServer(app);
-const PORT = process.env.PORT || 5000;
+const PORT = process.env.PORT || 5001;
 const ip = require("ip");
 const colors = require("colors");
 
 app.set("view engine", "ejs");
-
+app.use(express.static(__dirname + "/include"))
 app.get('/', (req, res) => {
+  console.log("rendering home page for " + req.ip);
   res.render("pages/index", {
     random_number: Math.floor(Math.random() * 101)
   });
