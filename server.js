@@ -7,11 +7,14 @@ const colors = require("colors");
 
 app.set("view engine", "ejs");
 app.use(express.static(__dirname + "/include"))
+
 app.get('/', (req, res) => {
   console.log("rendering home page for " + req.ip);
-  res.render("pages/index", {
-    random_number: Math.floor(Math.random() * 101)
-  });
+  res.render("pages/index");
+});
+
+app.get("/pages/:page_title", (req, res) => {
+  res.render(`pages/${req.params.page_title}`)
 });
 
 server.listen(PORT, () => {
